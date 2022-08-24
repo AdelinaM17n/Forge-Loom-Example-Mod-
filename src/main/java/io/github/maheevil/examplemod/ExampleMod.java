@@ -1,9 +1,9 @@
-package com.example.examplemod;
+package io.github.maheevil.examplemod;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,7 +41,7 @@ public class ExampleMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-        LOGGER.info("Look, I found a {}!", Items.DIAMOND.getRegistryName());
+        LOGGER.info("Look, I found a {}!", Items.DIAMOND.getDefaultInstance().getDisplayName());
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -50,6 +50,6 @@ public class ExampleMod {
 
     @SubscribeEvent
     public void kaboom(ExplosionEvent.Detonate event) {
-        LOGGER.info("Kaboom! Something just blew up in {}!", event.getWorld());
+        LOGGER.info("Kaboom! Something just blew up in {}!", event.getLevel());
     }
 }
